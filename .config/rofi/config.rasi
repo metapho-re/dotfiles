@@ -1,0 +1,26 @@
+* {
+  font: "JetBrainsMono Nerd Font 10";
+  blue: #7e9cd8;
+  lightfg: var(blue);
+  lightbg: #363646;
+  background: #1f1f28;
+  foreground: var(blue);
+}
+
+window {
+  border: 4px;
+}
+
+listview {
+  border-color: var(lightbg);
+  border: 4px solid 0px 0px;
+  lines: 10;
+}
+
+element {
+  padding: 4px 0 4px 4px;
+}
+
+element-icon {
+  padding: 0 4px 0 0;
+}

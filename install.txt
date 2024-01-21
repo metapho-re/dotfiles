@@ -1,0 +1,133 @@
+# Connect to the internet
+iwctl
+> station wlan0 scan
+> station wlan0 get-networks
+> station wlan0 connect [my_network]
+> quit
+
+# Format the partitions
+mkfs.ext4 /dev/nvme0n1p3
+mkswap /dev/nvme0n1p2
+mkfs.fat -F 32 /dev/nvme0n1p1
+
+# Mount the file systems
+mount /dev/nvme0n1p3 /mnt
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+swapon /dev/nvme0n1p2
+
+# Install essential packages
+pacstrap -K /mnt base linux linux-firmware
+
+# Generate the fstab file
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# Change root into the new system
+arch-chroot /mnt
+
+# Install all packages from official repositories
+pacman -S [package_list]
+
+# Set the time zone
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+# Run hwclock
+hwclock --systohc
+
+# Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8
+
+# Generate the locales
+locale-gen
+
+# Create the locale.conf file
+printf "LANG=en_US.UTF-8\n\n" > /etc/locale.conf
+
+# Create the hostname file
+printf "shahrokh\n\n" > /etc/hostname
+
+# Set the root password
+passwd
+
+# Mount the EFI system partition
+mount /dev/nvme0n1p1 /boot
+
+# Install the GRUB EFI application and its modules
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
+
+# Generate the main configuration file
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Exit
+exit
+
+# Reboot
+reboot
+
+# Log in as root
+
+# Create netdev group
+groupadd netdev
+
+# Create the main user, member of netdev and video groups
+useradd -m shahrokh -G netdev,video
+
+# Set the password for the main user
+passwd shahrokh
+
+# Edit the sudo configuration
+EDITOR=nvim visudo
+
+# Give the main user full root privileges by adding "shahrokh ALL=(ALL:ALL) ALL" after "root ALL=(ALL:ALL) ALL"
+
+# Reboot
+reboot
+
+# Log in as shahrokh
+
+# Start iwd and dhcpcd
+sudo systemctl start iwd dhcpcd
+
+# Connect to the internet
+iwctl
+> station wlan0 scan
+> station wlan0 get-networks
+> station wlan0 connect [my_network]
+> quit
+
+# Enable iwd and dhcpcd
+sudo systemctl enable iwd dhcpcd
+
+# Enable package cache cleaning
+sudo systemctl enable paccache.timer
+
+# Enable periodic TRIM
+sudo systemctl enable fstrim.timer
+
+# Change login shell
+chsh -s /usr/bin/fish
+
+# Edit /etc/pacman.conf and uncomment #ParallelDownloads = 5
+
+# Install all packages from user repository. For each package:
+git clone https://aur.archlinux.org/package_name.git
+cd package_name
+makepkg -s -i
+cd ..
+rm -rf package_name
+
+# Mount USB device to copy files from
+sudo mount /dev/sda /mnt
+
+# Copy all configuration files
+cp -r /mnt/dotfiles/.config/* .config/
+cp -r /mnt/dotfiles/.themes ./
+cp /mnt/dotfiles/.xinitrc ./
+sudo cp -r /mnt/dotfiles/usr/local/bin/* /usr/local/bin/
+sudo cp /mnt/dotfiles/usr/share/fonts/TTF/iosevka_nerd_font.ttf /usr/share/fonts/TTF/
+
+# Reboot
+reboot
+
+# Log in as shahrokh
+
+# Start the X server (if necessary)
+startx

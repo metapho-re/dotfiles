@@ -1,0 +1,45 @@
+#!/bin/bash
+
+BG="#1F1F28"
+FG="#7E9CD8"
+
+RED="#E46876"
+YELLOW="#E6C384"
+
+i3lock \
+--color="${BG}D9" \
+--insidever-color=${FG} \
+--insidewrong-color=${RED} \
+--inside-color="${BG}00" \
+--ringver-color=${FG} \
+--ringwrong-color=${RED} \
+--ring-color=${FG} \
+--line-color=${BG} \
+--separator-color=${BG} \
+--keyhl-color=${YELLOW} \
+--bshl-color=${RED} \
+--verif-color=${BG} \
+--wrong-color=${BG} \
+--layout-color=${FG} \
+--time-color=${FG} \
+--date-color=${FG} \
+--pass-media-keys \
+--pass-screen-keys \
+--pass-power-keys \
+--pass-volume-keys \
+--{time,date,layout,verif,wrong,greeter}-font="Source Code Pro Medium" \
+--{layout,verif,wrong,greeter}-size=18 \
+--time-size=34 \
+--date-size=18 \
+--verif-text="Verifying..." \
+--wrong-text="Error!" \
+--noinput-text="Empty!" \
+--lock-text="Locking..." \
+--lockfailed-text="Failed to lock!" \
+--radius 140 \
+--ring-width 8.0 \
+--screen 1 \
+--clock \
+--indicator \
+--time-str="%I:%M:%S %p" \
+--date-str="%A, %b %d, %G"

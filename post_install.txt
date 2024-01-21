@@ -1,0 +1,9 @@
+# LXAppearance: set widget to Kanagawa and icon theme to Papirus-Dark
+
+# Code: install Kanagawa Flavors (Wave) and Material Icon Theme
+
+# Firefox: go to Settings > Extensions & Themes > Themes and install kanagawa_theme by AC
+
+# Chromium: go to Extensions > Visit Chrome Web Store and install Kanagawa
+
+# GIMP: go to Edit > Preferences > Theme and select System theme

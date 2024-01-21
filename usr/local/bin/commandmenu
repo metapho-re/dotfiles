@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rofi -modi [drun] -disable-history -show drun -show-icons -display-drun "Launch App"

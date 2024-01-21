@@ -1,0 +1,37 @@
+[global/wm]
+
+include-file = ~/.config/polybar/colors
+include-file = ~/.config/polybar/system
+include-file = ~/.config/polybar/decorations
+include-file = ~/.config/polybar/modules
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[bar/bar]
+
+width = 99%
+height = 27
+
+offset-x = 0.5%
+offset-y = 1%
+
+radius = 13.5
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = ${colors.crystalBlue}
+
+wm-restack = bspwm
+
+font-0 = "Source Code Pro Medium:size=10;3"
+font-1 = "Iosevka Nerd Font:size=12;3"
+font-2 = "Iosevka Nerd Font:size=16;4"
+font-3 = "Iosevka Nerd Font:size=18;4"
+
+modules-left = left launcher right separator left battery volume brightness right separator left network right
+modules-center = left bspwm right
+modules-right = left cpu memory filesystem right separator left time right
+
+enable-ipc = true

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+get_backlight() {
+  BNESS=$(xbacklight -get)
+  LIGHT=${BNESS%.*}
+
+  echo "${LIGHT}%"
+}
+
+get_icon() {
+  backlight="$(get_backlight)"
+  current="${backlight%%%}"
+
+  if [[ ("$current" -ge "0") && ("$current" -le "20") ]]; then
+    icon='/usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-off-symbolic.svg'
+  elif [[ ("$current" -ge "20") && ("$current" -le "40") ]]; then
+    icon='/usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-low-symbolic.svg'
+  elif [[ ("$current" -ge "40") && ("$current" -le "60") ]]; then
+    icon='/usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-medium-symbolic.svg'
+  elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
+    icon='/usr/share/icons/Papirus-Dark/symbolic/status/display-brightness-high-symbolic.svg'
+  fi
+}
+
+inc_backlight() {
+  xbacklight -inc 5 && get_icon && dunstify -u low --replace=69 -i "$icon" "Brightness : $(get_backlight)"
+}
+
+dec_backlight() {
+  xbacklight -dec 5 && get_icon && dunstify -u low --replace=69 -i "$icon" "Brightness : $(get_backlight)"
+}
+
+if [[ "$1" == "--get" ]]; then
+  get_backlight
+elif [[ "$1" == "--up" ]]; then
+  inc_backlight
+elif [[ "$1" == "--down" ]]; then
+  dec_backlight
+else
+  get_backlight
+fi

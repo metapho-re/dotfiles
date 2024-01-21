@@ -1,0 +1,30 @@
+[global]
+width = 280
+offset = 10x47
+separator_height = 4
+padding = 20
+horizontal_padding = 20
+frame_width = 4
+idle_threshold = 120
+font = JetBrainsMono Nerd Font 10
+line_height = 4
+min_icon_size = 24
+corner_radius = 10
+
+[urgency_low]
+background = "#1f1f28"
+foreground = "#dcd7ba"
+frame_color = "#7e9cd8"
+timeout = 4
+
+[urgency_normal]
+background = "#1f1f28"
+foreground = "#dcd7ba"
+frame_color = "#7e9cd8"
+timeout = 4
+
+[urgency_critical]
+background = "#1f1f28"
+foreground = "#dcd7ba"
+frame_color = "#e46876"
+timeout = 4

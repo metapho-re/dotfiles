@@ -1,0 +1,9 @@
+#!/bin/bash
+
+colorscripts_directory="/usr/local/bin/colorscripts"
+colorscripts_list="$(ls ${colorscripts_directory} | xargs -I $ basename $ | cut -d ' ' -f 1 | nl)"
+max_index="$(ls ${colorscripts_directory} | wc -l)"
+random_index=$(($RANDOM % $max_index + 1))
+random_colorscript="$(echo "${colorscripts_list}" | sed -n ${random_index}p | tr -d ' ' | tr '\t' ' ' | cut -d ' ' -f 2)"
+
+exec "${colorscripts_directory}/${random_colorscript}"

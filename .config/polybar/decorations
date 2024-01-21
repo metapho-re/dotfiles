@@ -1,0 +1,29 @@
+[module/separator]
+
+type = custom/text
+
+content = ""
+content-font = 3
+content-background = ${colors.background}
+content-foreground = ${colors.foreground}
+content-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/left]
+
+type = custom/text
+
+content = "%{T3}%{T-}"
+content-background = ${colors.background}
+content-foreground = ${colors.sumiInk3}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/right]
+
+type = custom/text
+
+content = "%{T3}%{T-}"
+content-background = ${colors.background}
+content-foreground = ${colors.sumiInk3}
