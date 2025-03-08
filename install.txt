@@ -67,8 +67,8 @@ reboot
 # Create netdev group
 groupadd netdev
 
-# Create the main user, member of netdev and video groups
-useradd -m shahrokh -G netdev,video
+# Create the main user, member of netdev, network and video groups
+useradd -m shahrokh -G netdev,network,video
 
 # Set the password for the main user
 passwd shahrokh
