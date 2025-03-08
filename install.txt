@@ -105,8 +105,6 @@ sudo systemctl enable fstrim.timer
 # Change login shell
 chsh -s /usr/bin/fish
 
-# Edit /etc/pacman.conf and uncomment #ParallelDownloads = 5
-
 # Install all packages from user repository. For each package:
 git clone https://aur.archlinux.org/package_name.git
 cd package_name
