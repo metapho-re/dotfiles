@@ -109,6 +109,7 @@ chsh -s /usr/bin/fish
 git clone https://aur.archlinux.org/package_name.git
 cd package_name
 makepkg -s -i
+sudo pacman -U *.zst
 cd ..
 rm -rf package_name
 
